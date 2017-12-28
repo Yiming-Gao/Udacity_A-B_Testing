@@ -133,12 +133,12 @@ Passed.
 For click through probability, we first compute the control value `p_cnt`, and then estimate the standard deviation using this value with experiment group's sample size, i.e. `std = sqrt(p_cnt * (1 - p_cnt) / N_exp)`. The margin of error is 1.96 times of standard deviation.
 
 ```
-control value = 0.0821258
+control value = 28378/345543 = 0.0821258
 standard deviation = sqrt(0.0821258 * (1-0.0821258) / 344660) = 0.000468
 margin of error = 1.96 * 0.000468 = 0.00092
 lower bound = 0.0821258 - 0.00092 = 0.0812
 upper bound = 0.0821258 + 0.00092 = 0.0830
-experiment value = 0.0821824
+experiment value = 28325/344660 = 0.0821824
 ```
 
 The observed value (experiment value) is within the bounds, and therefore this invariant metric passed the sanity check.
