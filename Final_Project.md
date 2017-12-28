@@ -36,3 +36,11 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
 
 ### Neither
 **Number of user-ids**: Since we're interested in the proportion of unique cookies that click on the "start free trial" button, i.e the probability of enrolling, this metric would not give us any useful information and therefore it was not used as an invariant metric.
+
+## Measuring Standard Deviation
+要求：For each of your evaluation metrics, indicate whether you think the analytic estimate would be comparable to the the empirical variability, or whether you expect them to be different (in which case it might be worth doing an empirical estimate if there is time). Briefly give your reasoning in each case.
+
+For Bernoulli distribution with probability p and population N, the analytical standard deviation is $$std = \sqrt{\frac{p*(1-p)}{N}}$$.
+
+
+
