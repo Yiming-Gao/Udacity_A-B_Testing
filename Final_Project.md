@@ -29,3 +29,10 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
   - If not, continue with the free trial without enrolling
 - Control group: no such pop-up
 - Underlying assumption: the gross conversion in the control group is higher than experiment group.
+
+**Retention**: The number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by number of user-ids to complete checkout. It's related to **"without significantly reducing the number of students to continue past the free trial and eventually complete the course"**.
+
+**Net conversion**: The number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by the number of unique cookies to click the "Start free trial" button. It is the product of previous two evaluation metrics, and it can be considered as a more **general goal** of the A/B test --- **whether rendering a "5 or more hours per week" suggestion helps increase the ratio of users who make payment over those who see the start free trial page.** Therefore it is also a good evaluation metric.
+
+### Neither
+**Number of user-ids**: Since we're interested in the proportion of unique cookies that click on the "start free trial" button, i.e the probability of enrolling, this metric would not give us any useful information and therefore it was not used as an invariant metric.
