@@ -153,3 +153,8 @@ The observed value (experiment value) is within the bounds, and therefore this i
 ## Recommendation
 
 # Follow-up Experiment
+
+References:
+- https://github.com/yxiong/udacity-data-analyst/tree/master/a-b-test
+- https://github.com/jasonicarter/DAND_AB_Testing/blob/master/final_project.md
+- https://github.com/lyvinhhung/Udacity-Data-Analyst-Nanodegree/blob/master/p7%20-%20Design%20and%20Analyze%20A-B%20Testing%20/README.md
