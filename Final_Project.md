@@ -40,6 +40,7 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
 ## Measuring Standard Deviation
 要求：For each of your **evaluation metrics**, make an analytic estimate of its standard deviation, given a sample size of 5000 cookies visiting the course overview page. 
 
+|                                                     |         |
 |:---------------------------------------------------:|:-------:|
 | Unique cookies to view course overview page per day:|  40000  |
 | Unique cookies to click "Start free trial" per day: |   3200  |
