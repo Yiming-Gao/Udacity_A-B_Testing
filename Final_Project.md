@@ -19,7 +19,7 @@ Invariant metrics should not change across experimental or control groups.
 **Click-through probability**: The number of unique cookies to click the "Start free trial" button divided by number of unique cookies to view the course overview page. 再次，用户在点击button之前是没有看见过我们要测试的页面的，it doesn't depend on our test and is a good invariant metric.
 
 ### Evaluation Metrics
-Evaluation metrics are expected to change over the experiment with differences observed between the experimental and control groups. *If the hypothesis is true, the number of user-ids to enroll would be reduced, eliminating the unprepared students, with payments/checkouts not decreasing.*
+Evaluation metrics are expected to change over the experiment with differences observed between the experimental and control groups. **If the hypothesis is true, the number of user-ids to enroll would be reduced, eliminating the unprepared students, with payments/checkouts not decreasing.**
 
 In order to launch the experiment, we want to decrease the enrollment of unprepared students, i.e the gross conversion should decrease, while not reducing the number of students who complete the free trial and make a payment, i.e the net converion should either stay the same or go up.
 
