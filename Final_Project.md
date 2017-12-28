@@ -94,3 +94,39 @@ Answer:
 We decide to redirect 50% of the traffic to our experiment, and the length of the experiment is therefore `685,325 / (40000 * 0.5) = 34.3 = 35` days (where 40000 is the baseline number of visitors per day).
 
 解释：The 50% traffic being redirected to the experiment means that 25% will go to control group and 25% to experiment group, and therefore we risk about a quarter of users seeing an not-yet-evaluated feature. This is relatively large risk, because those 25% users will see a different rendering of "start free trial" page which potentially discourages them to start the free trial (although the intention is to increase the overall net conversion). But this relatively large risk is a reluctant choice in order to keep the length of the experiment in a reasonable amount of time. If we reduce the risk by half (sending 12.5% users to see not-yet-evaluted feature), the length will be doubled, taking more than 2 months, which is a little too long.
+
+# Experiment Analysis
+## Sanity Checks
+Question: For each of your invariant metrics, give the 95% confidence interval for the value you expect to observe, the actual observed value, and whether the metric passes your sanity check. The data could be found at: https://docs.google.com/spreadsheets/d/1Mu5u9GrybDdska-ljPXyBjTpdZIUev_6i7t4LRDfXM8/edit#gid=0.
+
+Answer:
+
+For counts ("number of cookies" and "number of clicks"), we model the assignment to control and experiment group as a Bernoulli distribution with probability 0.5. Therefore the standard deviation is `std = sqrt(0.5 * 0.5 / (N_1 + N_2))`, and the margin of error is `me = 1.96 * std`. The lower bound will be `0.5 - me` and the higher bound will be `0.5 + me`. The actual observed value is number of assignments to control group divide by the number of total assignments.
+
+**Number of cookies**
+
+`control group total = 345543
+
+experiment group total = 344660
+
+standard deviation = sqrt(0.5 * 0.5 / (345543 + 344660)) = 0.0006018
+
+margin of error = 1.96 * 0.0006018 = 0.0011796
+
+lower bound = 0.5 - 0.0011797 = 0.4988
+
+upper bound = 0.5 + 0.0011797 = 0.5012
+
+observed = 345543 / (345543 + 344660) = 0.5006`
+
+
+## Result Analysis
+### Effect Size Tests
+
+### Sign Tests
+
+### Summary
+
+## Recommendation
+
+# Follow-up Experiment
