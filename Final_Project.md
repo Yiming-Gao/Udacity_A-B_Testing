@@ -39,14 +39,15 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
 
 ## Measuring Standard Deviation
 要求：For each of your evaluation metrics, indicate whether you think the analytic estimate would be comparable to the the empirical variability, or whether you expect them to be different (in which case it might be worth doing an empirical estimate if there is time). Briefly give your reasoning in each case.
-|:-:|:-:|
-|Unique cookies to view course overview page per day:| 40000  |
-| Unique cookies to click "Start free trial" per day:  | 3200  |
-|  Enrollments per day: | 660  |
-|  Click-through-probability on "Start free trial": |  0.08 |
-| Probability of enrolling, given click:  | 0.20625  |
-| Probability of payment, given enroll:  |  0.53 |
-|Probability of payment, given click: |0.1093125|
+|                                                     |         |
+|:---------------------------------------------------:|:-------:|
+| Unique cookies to view course overview page per day:|  40000  |
+| Unique cookies to click "Start free trial" per day: |   3200  |
+| Enrollments per day:                                |    660  |
+| Click-through-probability on "Start free trial":    |    0.08 |
+| Probability of enrolling, given click:              | 0.20625 |
+| Probability of payment, given enroll:               |  0.53   |
+| Probability of payment, given click:                |0.1093125|
 
 For Bernoulli distribution with probability p and population N, the analytical standard deviation is `std = sqrt(p * (1-p)/N)`.
 
