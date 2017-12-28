@@ -57,12 +57,40 @@ The analytical standard deviation will likely match the empirical standard devia
 ### Gross conversion
 The baseline probability is `p = 0.20625`, and the number of users who see see the "start free trial" page (the denominator of the gross conversion) is `N = 5000 * 0.08 = 400`. Therefore the standard deviation is `sqrt(0.20625 * (1-0.20625)/ 400) = 0.0202`.
 
-The unit of analysis here is a person who click the "start free trial" page, and the unit of diversion is a cookie that does so. They are highly correlated, but not exactly the same (because the same person could visit the same page with a different cookie, say using a different device or a different browser). The high correlation suggests that the analytical estimate is mostly accurate. If we have time, collecting more data to verify it empirically will not hurt.
+分析：The unit of analysis here is a person who click the "start free trial" page, and the unit of diversion is a cookie that does so. They are highly correlated, but not exactly the same (because the same person could visit the same page with a different cookie, say using a different device or a different browser). The high correlation suggests that the analytical estimate is mostly accurate. If we have time, collecting more data to verify it empirically will not hurt.
 
 ### Retention
+The baseline probability is `p = 0.53`, and the number of users who enrolled the free trial (the denominator of the retention rate) is `N = 5000 * 0.08 * 0.20625 = 82.5`. Therefore the standard deviation is `sqrt(0.53 * (1-0.53)/ 82.5) = 0.0549`.
 
+分析：The unit of analysis here is a a person who enrolled the free trial, and the unit of diversion is the user-id that does so. This two almost always match up (only in very rare cases, the same person might register with several different user-ids, or several people might share the same user-id, although not they are supposed to). Therefore, the analytical estimates should match the empirical one well given the unit of analysis and unit of diversion have very strong match.
 
+### Net Conversion
+The baseline probability is `p = 0.1093125`, and the number of users who see the "start free trial" page (the denominator of the net conversion) is `N = 5000 * 0.08 = 400`. Therefore the standard deviation is `sqrt(0.1093125 * (1-0.1093125)/ 400) =0.0156`.
 
+分析： The unit of analysis and unit of diversion are both the same for "gross conversion" metric, and the analysis directly applies here. The analytical estimate is expected to be mostly accurate, but collecting more data to verify if one has time will be even better.
 
+## Sizing (Number of Samples vs. Power)
+Using the analytic estimates of variance, how many pageviews total (across both groups) would you need to collect to adequately power the experiment? Use an alpha of 0.05 and a beta of 0.2. Make sure you have enough power for each metric.
 
+回答：
 
+We will not use Bonferroni correction, because metrics here are highly correlated which makes Bonferroni corrections too conservative to draw conclusions.
+
+Use this online calculator to compute the number of samples needed: http://www.evanmiller.org/ab-testing/sample-size.html. 不要忘记乘2.
+
+- **Gross conversion.** The baseline rate is `0.20625`, `d_min = 0.01`. The required number of samples calculated from the online calculator is 25,835. Note that this is the number of clicks on "start free trial", and in order to get that number, we need `25835 / 0.08 * 2 = 645,875` page views.
+
+- **Retention**. The baseline retention rate is `0.53`, and `d_min = 0.01`. The required number of samples calculated from the online calculator is 39,115. Note that this is the number of users who finished the 14 days free trial, and in order to get that number, we need `(39115 / (0.08 * 0.20625)) * 2 = 4,741,212` page views.
+
+- **Net conversion.**  The baseline conversion rate is `0.1093125`, and `d_min = 0.0075`. The required number of samples calculated from the online calculator is 27,413. Note that this is the number of clicks on "start free trial", and in order to get that number, we need `(27413 / 0.08) * 2` = 685,325 page views.
+
+If we keep the retention rate as a evaluation metric, the number of required pages will be too large (in order to get 4.7 million page views, it takes 117 days of full site traffic, which is not realistic). Therefore we decide to drop the retention rate evaluation metric, and use gross conversion and net conversion as evaluation metrics, and the required number of page views (take the larger one) is 685,325.
+
+## Sizing (Duration vs. Exposure)
+Question: Indicate what fraction of traffic you would divert to this experiment and, given this, how many days you would need to run the experiment. 
+
+Answer:
+
+We decide to redirect 50% of the traffic to our experiment, and the length of the experiment is therefore `685,325 / (40000 * 0.5) = 34.3 = 35` days (where 40000 is the baseline number of visitors per day).
+
+解释：The 50% traffic being redirected to the experiment means that 25% will go to control group and 25% to experiment group, and therefore we risk about a quarter of users seeing an not-yet-evaluated feature. This is relatively large risk, because those 25% users will see a different rendering of "start free trial" page which potentially discourages them to start the free trial (although the intention is to increase the overall net conversion). But this relatively large risk is a reluctant choice in order to keep the length of the experiment in a reasonable amount of time. If we reduce the risk by half (sending 12.5% users to see not-yet-evaluted feature), the length will be doubled, taking more than 2 months, which is a little too long.
