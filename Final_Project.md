@@ -40,8 +40,7 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
 ## Measuring Standard Deviation
 要求：For each of your evaluation metrics, indicate whether you think the analytic estimate would be comparable to the the empirical variability, or whether you expect them to be different (in which case it might be worth doing an empirical estimate if there is time). Briefly give your reasoning in each case.
 
-For Bernoulli distribution with probability p and population N, the analytical standard deviation is 
-$$std = \sqrt{\frac{p*(1-p)}{N}}$$.
+For Bernoulli distribution with probability p and population N, the analytical standard deviation is $std = \sqrt{\frac{p*(1-p)}{N}}$.
 
 
 
