@@ -105,19 +105,13 @@ For counts ("number of cookies" and "number of clicks"), we model the assignment
 
 **Number of cookies**
 
-`control group total = 345543
-
-experiment group total = 344660
-
-standard deviation = sqrt(0.5 * 0.5 / (345543 + 344660)) = 0.0006018
-
-margin of error = 1.96 * 0.0006018 = 0.0011796
-
-lower bound = 0.5 - 0.0011797 = 0.4988
-
-upper bound = 0.5 + 0.0011797 = 0.5012
-
-observed = 345543 / (345543 + 344660) = 0.5006`
+`control group total = 345543`
+`experiment group total = 344660`
+`standard deviation = sqrt(0.5 * 0.5 / (345543 + 344660)) = 0.0006018`
+`margin of error = 1.96 * 0.0006018 = 0.0011796`
+`lower bound = 0.5 - 0.0011797 = 0.4988`
+`upper bound = 0.5 + 0.0011797 = 0.5012`
+`observed = 345543 / (345543 + 344660) = 0.5006`
 
 
 ## Result Analysis
