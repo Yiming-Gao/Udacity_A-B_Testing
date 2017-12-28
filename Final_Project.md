@@ -23,4 +23,9 @@ Evaluation metrics are expected to change over the experiment with differences o
 
 In order to launch the experiment, we want to decrease the enrollment of unprepared students, i.e the gross conversion should decrease, while not reducing the number of students who complete the free trial and make a payment, i.e the net converion should either stay the same or go up.
 
-**Gross conversion**: The number of user-ids to complete checkout and enroll in the free trial divided by number of unique cookies to click the "Start free trial" button.
+**Gross conversion**: The number of user-ids to complete checkout and enroll in the free trial divided by number of unique cookies to click the "Start free trial" button. It's related to **"the number of user-ids to enroll would be reduced"**.
+- Experiment group: see the pop-up
+  - If he has enough time, enroll the course
+  - If not, continue with the free trial without enrolling
+- Control group: no such pop-up
+- Underlying assumption: the gross conversion in the control group is higher than experiment group.
