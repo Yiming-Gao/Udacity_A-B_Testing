@@ -38,9 +38,8 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
 **Number of user-ids**: Since we're interested in the proportion of unique cookies that click on the "start free trial" button, i.e the probability of enrolling, this metric would not give us any useful information and therefore it was not used as an invariant metric.
 
 ## Measuring Standard Deviation
-要求：For each of your evaluation metrics, indicate whether you think the analytic estimate would be comparable to the the empirical variability, or whether you expect them to be different (in which case it might be worth doing an empirical estimate if there is time). Briefly give your reasoning in each case.
+要求：For each of your **evaluation metrics**, make an analytic estimate of its standard deviation, given a sample size of 5000 cookies visiting the course overview page. 
 
-|                                                     |         |
 |:---------------------------------------------------:|:-------:|
 | Unique cookies to view course overview page per day:|  40000  |
 | Unique cookies to click "Start free trial" per day: |   3200  |
@@ -53,6 +52,14 @@ In order to launch the experiment, we want to decrease the enrollment of unprepa
 For Bernoulli distribution with probability p and population N, the analytical standard deviation is `std = sqrt(p * (1-p)/N)`.
 
 The analytical standard deviation will likely match the empirical standard deviation as **the units of diversion for the experiment and analysis is cookies**. While for the metric retention, given that the units of diversion and analysis are different (user-id vs cookies), it is likely that the analytical standard deivation and the emperical standard deviation will not match.
+
+### Gross conversion
+The baseline probability is `p = 0.20625`, and the number of users who see see the "start free trial" page (the denominator of the gross conversion) is `N = 5000 * 0.08 = 400`. Therefore the standard deviation is `sqrt(0.20625 * (1-0.20625)/ 400) = 0.0202`.
+
+The unit of analysis here is a person who click the "start free trial" page, and the unit of diversion is a cookie that does so. They are highly correlated, but not exactly the same (because the same person could visit the same page with a different cookie, say using a different device or a different browser). The high correlation suggests that the analytical estimate is mostly accurate. If we have time, collecting more data to verify it empirically will not hurt.
+
+### Retention
+
 
 
 
