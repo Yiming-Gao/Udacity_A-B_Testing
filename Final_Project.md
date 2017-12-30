@@ -201,14 +201,29 @@ upper = d + se_pooled = 0.0019
 Since the interval contains 0, it is not statistical significant, and consequently not practical significant either.
 
 ### Sign Tests
+We use this online calculater to perform sign test: https://www.graphpad.com/quickcalcs/binomial1.cfm.
+
+- For gross conversion, the number of days we see an improvement in experiment group is 4, out of total 23 days of experiment. With probability 0.5 (for sign test), the online calculator calculates a p-value 0.0026, which is smaller than `alpha = 0.05`. Therefore the change is statistical significant.
+
+- For net conversion, the number of days we see an improvement in experiment group is 10, out of total 23 days of experiment. With probability 0.5 (for sign test), the online calculator calculates a p-value 0.6776, which is larger than `alpha = 0.05`. Therefore the change is not statistical significant.
 
 ### Summary
+I decide not to use Bonferroni correction, because the metrics in the test has high correlation and the Bonferroni correction will be too conservative to it.
+
+Both the effective size hypothesis tests and sign tests state that the change will practically significantly reduce the gross conversion rate, but not affect the net conversion rate in a practically significant way.
 
 ## Recommendation
+Based on the analysis above, I recommend not to adopt the changes of adding "5 or more hour" recommendation to "start free trial" date. The reason is that the A/B test shows that this will not practically significantly increase the net conversion rate. In other words, it does not increase the number of paid users, which fails the original goal of launching this feature.
 
 # Follow-up Experiment
+Add an "enroll with discount" button on the home page. (Note that this is an additional option that appears together with "start free trial" button, not replacing it.) This feature will allow users to skip the "free trial" phase, if they desire so, and in exchange they get a tuition discount. This feature will be potentially compelling to users who are already determined to take the course and ready to jump in directly.
 
-References:
-- https://github.com/yxiong/udacity-data-analyst/tree/master/a-b-test
-- https://github.com/jasonicarter/DAND_AB_Testing/blob/master/final_project.md
-- https://github.com/lyvinhhung/Udacity-Data-Analyst-Nanodegree/blob/master/p7%20-%20Design%20and%20Analyze%20A-B%20Testing%20/README.md
+The hypothesis is that by providing this additional option, the number of enrollees will be increased, because those who decide to take the course will directly enroll rather than experiencing the free trial, during which they might decide not to enroll for certain reasons. Another hypothesis is that this feature will bring more revenue to Udacity --- even though the users who enroll directly pay less than others, the increasing number of users will be more significant.
+
+Corresponding to each hypothesis, there are two evaluation metrics:
+
+1. the conversion rate from home page viewers to enrolled users. This will test whether the additional option helps to boost the enrollment.
+
+2. the ratio of revenue over number of home page viewers. This will test for the same unit number of users who viewed the home page, whether the additional option helps to increase the overall revenue.
+
+The initial unit of diversion will be a cookie, because the home page viewers are not necessarily signed in. When users are signed in, user id will be used instead of cookies. The reason for this is that we changed the home page rendering and do not want to confuse the signed in users by letting them see one version at a time, but another version at a different time.
