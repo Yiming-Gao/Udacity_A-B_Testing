@@ -145,6 +145,60 @@ The observed value (experiment value) is within the bounds, and therefore this i
 
 ## Result Analysis
 ### Effect Size Tests
+Let `N` denote the number of total samples (denominator) and `X` denote the number of target samples (numerator), and `_cnt` denote controlled group and `_exp` the experiment group. We first computed pooled probability and pooled standard error as
+```
+p_pooled = (X_cnt + X_exp) / (N_cnt + N_exp)
+se_pooled = sqrt(p_pooled * (1-p_pooled) * (1./N_cnt + 1./N_exp))
+```
+The probability difference is computed as
+```
+d = X_exp / N_exp - X_cnt / N_cnt
+```
+With these values in hand, the lower bound and upper bound are
+```
+lower = d - se_pooled
+upper = d + se_pooled
+```
+
+**Gross conversion**
+- Denominator (total samples): # clicks of "start free trial"
+- Numerator (target samples): # enrolled users
+
+```
+N_cnt = clicks_controlled = 17293.
+X_cnt = enroll_controlled = 3785.
+N_exp = clicks_experiment = 17260.
+X_exp = enroll_experiment = 3423.
+
+p_pooled = (X_cnt + X_exp) / (N_cnt + N_exp) = 0.2086
+se_pooled = sqrt(p_pooled * (1-p_pooled) * (1./N_cnt + 1./N_exp)) = 0.00437
+
+d = X_exp / N_exp - X_cnt / N_cnt = -0.02055
+
+lower = d - se_pooled = -0.0291
+upper = d - se_pooled = -0.0120
+```
+分析：Since the interval does **not** contain 0, the metric is statistical significant. It does **not** include `d_min = 0.01` or `-d_min = -0.01` either, and therefore it is also practical significant.
+
+**Net conversion**
+- Denominator (total samples): # clicks of "start free trial"
+- Numerator (target samples): # paid users
+
+```
+N_cnt = clicks_controlled = 17293.
+X_cnt = pay_controlled = 2033.
+N_exp = enroll_experiment = 17260.
+X_exp = pay_experiment = 1945.
+
+p_pooled = (X_cnt + X_exp) / (N_cnt + N_exp) = 0.1151
+se_pooled = sqrt(p_pooled * (1-p_pooled) * (1./N_cnt + 1./N_exp)) = 0.00343
+
+d = X_exp / N_exp - X_cnt / N_cnt = -0.0048
+
+lower = d - se_pooled = -0.0116
+upper = d + se_pooled = 0.0019
+```
+Since the interval contains 0, it is not statistical significant, and consequently not practical significant either.
 
 ### Sign Tests
 
